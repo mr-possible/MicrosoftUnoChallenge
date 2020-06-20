@@ -42,4 +42,18 @@ private WebDriver driver;
 	public String getTitle() {
 		return driver.getTitle();
 	}
+	
+	public void printDropDownElements() {
+		for(int i = 0; i < getDdWin10().size();i++) {
+			System.out.println("Elemento " + (i+1) + ": " + getDdWin10().get(i).getText());
+		}
+		
+		System.out.println("********************************************************");
+	}
+	
+	public void search(String sValue) {
+		getBtnSearch().click();
+		getInputSearch().sendKeys(sValue);
+		getInputSearch().submit();
+	}
 }

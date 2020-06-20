@@ -1,13 +1,13 @@
 package com.pages;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends MicrosoftBasePage{
-	private WebDriver driver;
 	
 	@FindBy(id = "shellmenu_1") private WebElement Office;
 	@FindBy(id = "shellmenu_2") private WebElement Windows;
@@ -19,7 +19,6 @@ public class HomePage extends MicrosoftBasePage{
 	public HomePage(WebDriver driver) {
 		super(driver);
 		//Initialize Elements	
-		this.driver = driver;
 	    PageFactory.initElements(driver, this);
 	    
 	}	
@@ -46,5 +45,14 @@ public class HomePage extends MicrosoftBasePage{
 
 	public WebElement getSupport() {
 		return Support;
+	}
+	
+	public void validateMenuItems() {
+		assertEquals(getOffice().getText(), "Office");
+		assertEquals(getWindows().getText(), "Windows");
+		assertEquals(getSurface().getText(), "Surface");
+		assertEquals(getXbox().getText(), "Xbox");
+		assertEquals(getDeals().getText(), "Deals");
+		assertEquals(getSupport().getText(), "Support");
 	}
 }

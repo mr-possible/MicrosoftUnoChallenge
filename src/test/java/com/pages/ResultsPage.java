@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class ResultsPage extends MicrosoftBasePage {
 private WebDriver driver;
 	
-	@FindBy(css = "button[data-m*='{\\\"cN\\\":\\\"R1MarketRedirect-cancel\\\",\\\"id\\\":\\\"nn1c2m1r1a']")
+	@FindBy(xpath = "//*[@id='R1MarketRedirect-1']/button")
 	private WebElement cancelAlert;
 	@FindBy(css = "div[aria-label*='software']>div>ul>li>div>a>div>div>div[class='c-price']") 
 	private List<WebElement> prices;
@@ -36,5 +36,24 @@ private WebDriver driver;
 	
 	public WebElement getLblSoftware() {
 		return lblSoftware;
+	}
+	
+	public void closeAlert() {
+		driver.switchTo().activeElement();
+		getCancelAlert().click();
+		driver.switchTo().activeElement();
+	}
+	
+	public void print3Prices() {
+		System.out.println("**************************************************");
+		int j=0;
+		while( j<3) {
+			System.out.println(getprices().get(j).getText().replaceAll("\\n", "").trim().toLowerCase().replace("from  ", ""));
+			j++;
+		}
+	}
+	
+	public void keepingPriceToCompare() {
+		firstPrice = getprices().get(0).getText().replaceAll("\\n", "").trim().toLowerCase().replace("from  ", "");
 	}
 }
